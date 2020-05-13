@@ -7,7 +7,7 @@ def _cidr_pton:
 def _cidr_ntop:
 	. as $n|[($n%256)]|.+[(($n-.[0])%65536)/256]
 	|.+[(($n-.[0]-.[1])%16777216)/65536|floor]
-	|.+[($n-.[0]-.[1]-.[2])/16777216|floor]|reverse|join(".");
+	|.+[($n-.[0]-.[1]-.[2])/16777216|floor]|map(tostring)|reverse|join(".");
 
 def _cidr_net: .|split("/")+["32"]|.[1];
 
